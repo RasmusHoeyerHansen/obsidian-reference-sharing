@@ -2,19 +2,20 @@ import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Set
 
 // Remember to rename these classes and interfaces!
 
-interface MyPluginSettings {
+interface InheritTagsPluginSettings {
 	mySetting: string;
 }
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
+const DEFAULT_SETTINGS: InheritTagsPluginSettings = {
 	mySetting: 'default'
 }
 
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+export default class InheritTagsPlugin extends Plugin {
+	settings: InheritTagsPluginSettings;
 
 	async onload() {
 		await this.loadSettings();
+
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
@@ -30,22 +31,16 @@ export default class MyPlugin extends Plugin {
 
 		// This adds a simple command that can be triggered anywhere
 		this.addCommand({
-			id: 'open-sample-modal-simple',
-			name: 'Open sample modal (simple)',
+			id: 'Inherit-tags-command',
+			name: 'Inherit tags from all refernces',
 			callback: () => {
 				new SampleModal(this.app).open();
 			}
 		});
 		// This adds an editor command that can perform some operation on the current editor instance
-		this.addCommand({
-			id: 'sample-editor-command',
-			name: 'Sample editor command',
-			editorCallback: (editor: Editor, view: MarkdownView) => {
-				console.log(editor.getSelection());
-				editor.replaceSelection('Sample Editor Command');
-			}
-		});
-		// This adds a complex command that can check whether the current state of the app allows execution of the command
+		
+		// This adds a complex command that can check whether the current 
+		// state of the app allows execution of the command
 		this.addCommand({
 			id: 'open-sample-modal-complex',
 			name: 'Open sample modal (complex)',
@@ -108,9 +103,9 @@ class SampleModal extends Modal {
 }
 
 class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+	plugin: InheritTagsPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: InheritTagsPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
