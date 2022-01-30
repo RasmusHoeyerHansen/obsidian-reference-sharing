@@ -1,4 +1,4 @@
-import { Command } from "obsidian";
+import {Command, WorkspaceLeaf} from "obsidian";
 
 import {App} from "obsidian";
 import SampleModal from "../Existing Types/SampleModal";
@@ -9,8 +9,8 @@ export interface CommandWithCallback extends Command {
 }
 
 export function AddTags(app : App) : boolean {
-	let activePane = app.workspace.getLeaf()
-	let activeContainer  = activePane.view.containerEl;
+	let activePane: WorkspaceLeaf = app.workspace.activeLeaf;
+	activePane.
 
 
 
